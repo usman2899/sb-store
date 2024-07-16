@@ -39,4 +39,14 @@ public class ControllerLayer {
     Product product = serviceLayer.createProductService(createRequest);
     return new ResponseEntity<>(product, HttpStatus.OK);
   }
+
+  @DeleteMapping
+  ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
+    Optional<Product> optionalProduct = serviceLayer.deleteProductService(id);
+    if (optionalProduct.isPresent()) {
+      return new ResponseEntity<>(optionalProduct.get(), HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
 }

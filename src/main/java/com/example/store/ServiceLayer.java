@@ -22,6 +22,15 @@ public class ServiceLayer {
     return optionalProduct;
   }
 
+  Optional<Product> deleteProductService(Long id) {
+    logger.info("Delete product request received: {}", id);
+    Optional<Product> optionalProduct = productRepo.findById(id);
+    if (optionalProduct.isPresent()) {
+      productRepo.delete(optionalProduct.get());
+    }
+    return optionalProduct;
+  }
+
   List<Product> getAllProductsService() {
     logger.info("Get all products request received");
     List<Product> productList = productRepo.findAll();
