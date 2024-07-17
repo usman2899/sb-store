@@ -40,7 +40,7 @@ public class ControllerLayer {
     return new ResponseEntity<>(product, HttpStatus.OK);
   }
 
-  @DeleteMapping
+  @DeleteMapping("/product/{id}")
   ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
     Optional<Product> optionalProduct = serviceLayer.deleteProductService(id);
     if (optionalProduct.isPresent()) {
